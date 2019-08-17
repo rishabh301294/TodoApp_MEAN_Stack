@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form [formGroup]="form" (submit)="onSaveTodo()" *ngIf="!isLoading">
+    <mat-form-field>
+      <input matInput type="text" formControlName="todo" placeholder="Todo Task">
+      <mat-error *ngIf="form.get('todo').invalid">Please enter a todo task.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" formControlName="subtodo" placeholder="Sub Todo">
+      <mat-error *ngIf="form.get('subtodo').invalid">Please enter a sub todo task.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput rows="1" formControlName="status" placeholder="Todo Task Status"></textarea>
+      <mat-error *ngIf="form.get('status').invalid">Please enter a todo task status.</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="accent" type="submit">Save Todo</button>
+  </form>
+</mat-card>

@@ -1,0 +1,19 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi="true" *ngIf="todos.length > 0 && !isLoading">
+  <mat-expansion-panel *ngFor="let todo of todos">
+    <mat-expansion-panel-header>
+     Todo Name - {{ todo.todo }}
+    </mat-expansion-panel-header>
+    <p> Sub Todo - {{ todo.subtodo }}</p>
+    <p> Todo Status - {{ todo.status }}</p>
+    <mat-action-row *ngIf="userIsAuthenticated && userId === todo.creator">
+
+
+      <a mat-button color="primary" [routerLink]="['/edit', todo.id]">EDIT</a>
+      <button mat-button color="warn" (click)="onDelete(todo.id)">DELETE</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-paginator [length]="totaltodos" [pageSize]="todosPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"
+  *ngIf="todos.length > 0"></mat-paginator>
+<p class="info-text mat-body-1" *ngIf="todos.length <= 0 && !isLoading">No todos added yet!</p>
