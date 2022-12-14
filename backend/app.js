@@ -9,11 +9,12 @@ const userRoutes = require("./routes/user");
 const app = express();
 
 mongoose.
-connect('mongodb://localhost:27017/' + process.env.MONGO_COLLECTION, {useNewUrlParser: true})
+connect('mongodb://admin:password@localhost:27017/default?authSource=admin', {useNewUrlParser: true})
   .then(() => {
     console.log("Connected to database!");
   })
-  .catch(() => {
+  .catch((err) => {
+    console.log(err);
     console.log("Connection failed!");
   });
 

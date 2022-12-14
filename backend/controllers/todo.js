@@ -8,7 +8,7 @@ exports.createTodo = (req, res, next) => {
     subtodo: req.body.subtodo,
     creator: req.userData.userId
   });
-  console.log(todo);
+  console.log("----",todo);
   todo.save().then(createdTodo => {
     res.status(201).json({
       message: "Todo added successfully",
